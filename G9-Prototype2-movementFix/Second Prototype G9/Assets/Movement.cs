@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
     public KeyCode moveUp = KeyCode.W;
     public KeyCode moveDown = KeyCode.S;
+    public KeyCode fire = KeyCode.Space;
+
     public float speed = 10.0f;
     public float boundY = 2.25f;
     private Rigidbody2D rb2d;
 
     public GameObject PlayerBullet;
-    public GameObject bulletPosition;
     public GameObject explosion;
 
     // Use this for initialization
@@ -25,15 +25,14 @@ public class Movement : MonoBehaviour
     void Update()
     {
         //fire bullets when spacebar is pressed
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(fire))
         {
             //instantiate bullet
-            GameObject bullet = (GameObject)Instantiate(PlayerBullet);
-            bullet.transform.position = bulletPosition.transform.position; //set bullet initial pos
-
+            GameObject bullet = Instantiate(PlayerBullet);
+            bullet.transform.position = transform.position + new Vector3(1f, 0f); //set bullet initial poss
         }
 
-        var vel = rb2d.velocity;
+        Vector2 vel = rb2d.velocity;
         if (Input.GetKey(moveUp))
         {
             vel.y = speed;
@@ -42,7 +41,7 @@ public class Movement : MonoBehaviour
         {
             vel.y = -speed;
         }
-        else if (!Input.anyKey)
+        else if (!Input.GetKey(moveUp) || !Input.GetKey(moveDown))
         {
             vel.y = 0;
         }

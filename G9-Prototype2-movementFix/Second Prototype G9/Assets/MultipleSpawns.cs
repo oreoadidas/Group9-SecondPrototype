@@ -3,29 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MultipleSpawns : MonoBehaviour {
-
+public class MultipleSpawns : MonoBehaviour
+{
     public Transform[] spawnPoints;
     public GameObject prefab;
+    public float period = 1f;
 
     float nextActionTime = 0.0f;
-    public float period = 0.1f;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
+    // Update is called once per frame
+    void Update()
+    {
         if (Time.time > nextActionTime)
         {
             nextActionTime += period;
             SpawnEnemyAtPoint();
         }
-		
-	}
+    }
 
     void SpawnEnemyAtPoint()
     {
