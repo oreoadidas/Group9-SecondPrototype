@@ -19,6 +19,7 @@ public class EnemyScript : MonoBehaviour
     {
         energy = 0f;
         speed = -2f;
+        energyBar.fillAmount = 0;
         sr = GetComponent<SpriteRenderer>();
     }
 
